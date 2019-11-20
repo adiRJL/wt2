@@ -2,11 +2,20 @@
 {% load static %}
 
 {% block head %}
+<style>
+    body {
+      background-image: url({% static 'main_app/images/hotel_bg.jpg' %});
+      background-size: cover;
+    }
+    .container-fluid{
+      opacity: 0.9;
+    }
+  </style>
 <title>List of Hotels</title>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Font Awesome -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 <link rel="stylesheet" href="{% static 'main_app/index.css' %}">
 <script type="text/javascript">
     function selection_page_link(event){
@@ -15,9 +24,12 @@
         }else{
             hotel_name = event.target.parentNode.children[1].innerHTML;
         }
+        
         var f = document.getElementById("form");
         
         var i = document.getElementById("hotel-name");
+        
+            
         i.setAttribute('value', hotel_name);
         f.submit();
     }
@@ -30,7 +42,7 @@
 
         <div class="col-sm-12">
 
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="font-size: 13pt">
                 <div class="panel-body">
                     <table class="table">
                         <thead>
@@ -49,12 +61,11 @@
                                     <img src="{% static 'main_app/images/' %}{{ hotel.image_url }}"
                                          height="100" width="150">
                                 </td>
-                                {% csrf_token %}
                                 <td>{{ hotel.name }}</td>
                                 <td>{{ hotel.city }}</td>
                                 <td>{{ hotel.address }}</td>
-                                <td> <!-- rooms --> </td>
-                            
+                                <td>{{ hotel.max_rooms_available }}</td>
+                                {% csrf_token %}
                             </tr>
 
                             {% endfor %}

@@ -5,12 +5,12 @@ from django.db import models
 from datetime import datetime
 
 # Create your models here.
-class Session(models.Model):
-	check_in = models.DateField(default=datetime.now())
-	check_out = models.DateField(default=datetime.now())
+# class Session(models.Model):
+# 	check_in = models.DateField(default=datetime.now())
+# 	check_out = models.DateField(default=datetime.now())
 
-	def __str__(self):
-		return (str(self.pk))
+# 	def __str__(self):
+# 		return (str(self.pk))
 
 class User(models.Model):
 	name = models.CharField(max_length=50)
@@ -29,6 +29,8 @@ class Hotel(models.Model):
 	startPrice = models.FloatField(default=0.0)
 	endPrice = models.FloatField(default=0.0)
 	image_url = models.CharField(default="empty", max_length=100)
+	review = models.CharField(default="empty", max_length=1000000000)
+	max_rooms_available = models.IntegerField(default = 20)
 
 	def __str__(self):
 		return (self.name + " " +self.city + " " + self.country + " " 
